@@ -4,10 +4,11 @@ return {
 		"stevearc/conform.nvim",
 		"mason-org/mason-lspconfig.nvim",
 		"mason-org/mason.nvim",
+		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"hrsh7th/nvim-cmp",
 		"j-hui/fidget.nvim",
 	},
 
@@ -70,6 +71,17 @@ return {
 			}),
 		})
 
+		vim.api.nvim_create_autocmd("LspAttach", {
+			callback = function(event)
+				local opts = { buffer = event.buf }
+
+				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+			end,
+		})
+
 		conform.setup({
 			format_on_save = {
 				timeout_ms = 5000,
@@ -100,12 +112,11 @@ return {
 		})
 
 		vim.diagnostic.config({
-			-- virtual_text = true,
+			virtual_text = true,
+			severity_sort = true,
 			float = {
-				focusable = false,
 				style = "minimal",
 				border = "rounded",
-				source = "always",
 				header = "",
 				prefix = "",
 			},

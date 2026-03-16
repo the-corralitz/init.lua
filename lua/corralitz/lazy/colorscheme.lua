@@ -14,6 +14,9 @@ return {
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
+		opts = {
+			lazy = true,
+		},
 		config = function()
 			require("gruvbox").setup({
 				terminal_colors = true, -- add neovim terminal colors
@@ -38,14 +41,11 @@ return {
 				dim_inactive = false,
 				transparent_mode = true,
 			})
-			-- ColorMyPencils()
+			ColorMyPencils()
 		end,
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",
-		config = function()
-			-- ColorMyPencils("oxocarbon")
-		end,
 	},
 	{
 		"folke/tokyonight.nvim",
@@ -56,7 +56,7 @@ return {
 				transparent = true,
 				terminal_colors = true,
 			})
-			ColorMyPencils("tokyonight-storm")
+			-- ColorMyPencils("tokyonight-storm")
 		end,
 	},
 }
