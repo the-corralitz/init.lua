@@ -21,9 +21,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	spec = "corralitz.lazy",
-	checker = { enabled = false },
+	spec = {
+		{ import = "plugins" },
+	},
 	ui = {
 		border = "single",
 	},
+	change_detection = { notify = false },
 })

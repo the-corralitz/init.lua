@@ -41,7 +41,7 @@ return {
 				dim_inactive = false,
 				transparent_mode = true,
 			})
-			ColorMyPencils()
+			-- ColorMyPencils()
 		end,
 	},
 	{
@@ -56,7 +56,7 @@ return {
 				transparent = true,
 				terminal_colors = true,
 			})
-			-- ColorMyPencils("tokyonight-storm")
+			ColorMyPencils("tokyonight-storm")
 		end,
 	},
 }

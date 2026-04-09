@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 vim.opt.guicursor = ""
 
 vim.opt.nu = true
@@ -18,3 +19,4 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+vim.opt.colorcolumn = "80"
