@@ -1,31 +1,44 @@
 return {
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        config = function()
-            require("nvim-treesitter").setup({
-                ensure_installed = {
-                    "vimdoc",
-                    "javascript",
-                    "typescript",
-                    "c",
-                    "lua",
-                    "rust",
-                    "jsdoc",
-                    "bash",
-                    "go",
-                    "html",
-                    "css",
-                    "tsx",
-                },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			local parsers = {
+				"javascript",
+				"typescript",
+				"c",
+				"lua",
+				"rust",
+				"jsdoc",
+				"bash",
+				"go",
+				"html",
+				"css",
+				"tsx",
+			}
 
-                sync_install = false,
-                auto_install = true,
+			local group = vim.api.nvim_create_augroup("Treesitter", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+				group = group,
+				callback = function()
+					if vim.bo.buftype ~= "" then
+						return
+					end
 
-                indent = { enable = true },
+					pcall(vim.treesitter.start, 0)
+				end,
+			})
 
-                hightlight = { enable = true },
-            })
-        end,
-    }
+			vim.api.nvim_create_autocmd("User", {
+				group = group,
+				pattern = "VeryLazy",
+				once = true,
+				callback = function()
+					require("nvim-treesitter").install(parsers)
+				end,
+			})
+		end,
+	},
 }
