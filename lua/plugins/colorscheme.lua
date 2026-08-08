@@ -50,7 +50,7 @@ return {
 				transparent = true,
 				terminal_colors = true,
 			})
-			ColorMyPencils("tokyonight-storm")
+			-- ColorMyPencils("tokyonight-storm")
 		end,
 	},
 }
