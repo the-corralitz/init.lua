@@ -4,7 +4,22 @@ return {
 		dependencies = {
 			"mason-org/mason-lspconfig.nvim",
 			"mason-org/mason.nvim",
-			"saghen/blink.cmp",
+			{
+				"saghen/blink.cmp",
+				opts = {
+					sources = {
+						default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+						providers = {
+							lazydev = {
+								name = "LazyDev",
+								module = "lazydev.integrations.blink",
+								-- make lazydev completions top priority (see `:h blink.cmp`)
+								score_offset = 100,
+							},
+						},
+					},
+				},
+			},
 			{
 				"folke/lazydev.nvim",
 				ft = "lua",
