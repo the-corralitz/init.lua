@@ -35,7 +35,7 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			vim.lsp.config("*", {
-				root_markers = { ".git" },
+				root_markers = { ".git", "pyproject.toml", "go.mod", "package.json" },
 				capabilities = capabilities,
 			})
 
