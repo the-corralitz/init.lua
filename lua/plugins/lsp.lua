@@ -5,27 +5,23 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 			"mason-org/mason.nvim",
 			"saghen/blink.cmp",
+			{
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
 		},
 
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			vim.lsp.config("*", {
-				root_marking = { ".git" },
-			})
-
-			vim.lsp.config("lua_ls", {
+				root_markers = { ".git" },
 				capabilities = capabilities,
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
 			})
 
 			require("mason").setup()
